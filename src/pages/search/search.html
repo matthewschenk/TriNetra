@@ -1,0 +1,108 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Search</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>StartDate</ion-label>
+          <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="StartDate">
+          </ion-datetime>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>EndDate</ion-label>
+          <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="EndDate">
+          </ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Task Type</ion-label>
+          <ion-select [(ngModel)]="Task">
+            <ion-option value="m">Meeting</ion-option>
+            <ion-option value="c">Counseling</ion-option>
+            <ion-option value="x">Advising</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>Person</ion-label>
+          <ion-select [(ngModel)]="Person" multiple="true">
+            <ion-option>Griffin</ion-option>
+            <ion-option>Halverson</ion-option>
+            <ion-option>Passos</ion-option>
+            <ion-option>Colmenares</ion-option>
+            <ion-option>Johnson</ion-option>
+            <ion-option>Simpson</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-label>Comments</ion-label>
+        <ion-textarea></ion-textarea>
+      </ion-item>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col>
+
+      </ion-col>
+      <ion-col>
+        <button full ion-button (click)="Search()">Search</button>
+      </ion-col>
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col>
+
+      </ion-col>
+      <ion-col>
+
+        <button full ion-button (click)="goToHome()">Cancel / Back</button>
+      </ion-col>
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+
+
+
+
+  </ion-grid>
+</ion-content>
