@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AddEntryPage } from '../pages/add-entry/add-entry';
 import { SearchPage } from '../pages/search/search';
+import { ViewPage } from '../pages/view/view';
 import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { IonicStorageModule } from '@ionic/storage';
     MyApp,
     HomePage,
     AddEntryPage,
-    SearchPage
+    SearchPage,
+    ViewPage
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,8 @@ import { IonicStorageModule } from '@ionic/storage';
     MyApp,
     HomePage,
     AddEntryPage,
-    SearchPage
+    SearchPage,
+    ViewPage
   ],
   providers: [
     StatusBar,

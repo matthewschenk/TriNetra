@@ -1,5 +1,7 @@
 {
   "name": "TaskLogger",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

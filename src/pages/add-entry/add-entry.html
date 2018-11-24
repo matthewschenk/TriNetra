@@ -15,15 +15,15 @@
 
 <ion-content padding>
   <ion-grid>
+    <ion-row class="colHeight1"></ion-row>
+
 
     <ion-row>
       <ion-col>
         <ion-item>
           <ion-label>Task Type</ion-label>
           <ion-select [(ngModel)]="Task">
-            <ion-option value="m">Meeting</ion-option>
-            <ion-option value="c">Counseling</ion-option>
-            <ion-option value="x">Advising</ion-option>
+            <ion-option *ngFor="let item of TaskSet" [value]="item">{{item}}</ion-option>
           </ion-select>
         </ion-item>
       </ion-col>
@@ -34,30 +34,44 @@
         <ion-item>
           <ion-label>Person</ion-label>
           <ion-select [(ngModel)]="Person" multiple="true">
-            <ion-option>Griffin</ion-option>
-            <ion-option>Halverson</ion-option>
-            <ion-option>Passos</ion-option>
-            <ion-option>Colmenares</ion-option>
-            <ion-option>Johnson</ion-option>
-            <ion-option>Simpson</ion-option>
+            <ion-option *ngFor="let item of PersonSet" [value]="item">{{item}}</ion-option>
           </ion-select>
         </ion-item>
       </ion-col>
     </ion-row>
 
     <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-textarea [(ngModel)]="Task" placeholder="Enter New Task"></ion-textarea>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-textarea [(ngModel)]="NewPerson" placeholder="Enter New Person"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+<ion-row class="colHeight1"></ion-row>
+
+    <ion-row class="colHeight1">
       <ion-item>
-        <ion-label>Comments</ion-label>
-        <ion-textarea></ion-textarea>
+        <ion-textarea [(ngModel)]="Comment" placeholder="Comments"></ion-textarea>
       </ion-item>
     </ion-row>
 
+<ion-row class="colHeight1"></ion-row>
+
     <ion-row>
       <ion-col>
 
       </ion-col>
       <ion-col>
-        <button full ion-button (click)="SaveEntry()">Save</button>
+        <button class="colHeight1 largeFont" full ion-button color="secondary" (click)="SaveEntry()">Save</button>
       </ion-col>
       <ion-col>
 
@@ -69,7 +83,7 @@
 
       </ion-col>
       <ion-col>
-        <button full ion-button (click)="goToHome()">Cancel / Back</button>
+        <button class="colHeight1 largeFont" full ion-button color="danger" (click)="goToHome()">Cancel / Back</button>
       </ion-col>
       <ion-col>
 

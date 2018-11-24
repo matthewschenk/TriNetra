@@ -15,6 +15,17 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private storage: Storage) {
     console.log("here");
+    storage.get("tasks").then((val)=>{
+      if (val == null)
+      {
+         var your_json_object = {"data": []};
+         this.storage.set("tasks", your_json_object)
+      }
+      else
+      {
+        this.data_object = val;
+      }
+    });
     //this.storage.set('data','fghfghd');
     //this.storage.get('data').then((data) => {
      // if(data != null){
@@ -24,11 +35,16 @@ export class HomePage {
     //});
   }
   goToAddEntry(){
+    //this.data_object.data.push({"time": Date.now(),"task": "meeting", "person": "Ali", "comment": "test"});
+    //this.storage.set("tasks", this.data_object)
     this.navCtrl.push(AddEntryPage);
     // make this object json, and save it to data in addentry page JSON.stringify storage set
   }
 
   goToSearch(){
+    //this.storage.get("tasks").then((Val)=>{
+      //console.log(Val);
+    //})
     this.navCtrl.push(SearchPage);
   }
 
