@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <ion-grid>
-
+<ion-row class="colHeight1"></ion-row>
 
     <ion-row>
       <ion-col>
@@ -36,7 +36,6 @@
         </ion-item>
       </ion-col>
     </ion-row>
-
 
     <ion-row>
       <ion-col>
@@ -60,25 +59,27 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+<ion-row class="colHeight1"></ion-row>
+
+    <ion-row class="colHeight1">
        <ion-item>
           <ion-textarea [(ngModel)]="Comment" placeholder = "Comments"></ion-textarea>
           </ion-item>
     </ion-row>
 
+<ion-row class="colHeight1"></ion-row>
 
     <ion-row>
       <ion-col>
 
       </ion-col>
       <ion-col>
-        <button full ion-button color = "secondary" (click)="Search()">Search</button>
+        <button class="colHeight1" full ion-button color = "secondary" (click)="Search()">Search</button>
       </ion-col>
       <ion-col>
 
       </ion-col>
     </ion-row>
-
 
     <ion-row>
       <ion-col>
@@ -86,15 +87,12 @@
       </ion-col>
       <ion-col>
 
-        <button full ion-button color = "danger" (click)="goToHome()">Cancel / Back</button>
+        <button class="colHeight1" full ion-button (click)="goToHome()">Cancel / Back</button>
       </ion-col>
       <ion-col>
 
       </ion-col>
     </ion-row>
-
-
-
 
   </ion-grid>
 </ion-content>

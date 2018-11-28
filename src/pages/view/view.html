@@ -14,18 +14,41 @@
 
 
 <ion-content padding>
-  <ion-card *ngFor = "let item of results">
+  <ion-card *ngFor="let item of results">
 
-    <ion-card-header>
+    <ion-card-header class="largeFont">
       {{timeConverter(item.time)}}
     </ion-card-header>
 
     <ion-card-content>
-      {{item.task}}{{item.person}}{{item.comment}}
+      <ion-grid>
+        <ion-row class="largeFont"> {{item.task}} </ion-row>
+        <ion-row class="largeFont"> {{item.person}} </ion-row>
+        <ion-row class="largeFont"> {{item.comment}} </ion-row>
+      </ion-grid>
     </ion-card-content>
-  <!--   <i class="fas fa-trash-alt"  (click)="delete(item.time)"></i>    -->
-<button full ion-button color="danger" (click)="delete(item.time)">Delete</button>
+    <!--   <i class="fas fa-trash-alt"  (click)="delete(item.time)"></i>    -->
+    <ion-grid>
+      <ion-row>
+        <ion-col> </ion-col>
+        <ion-col> </ion-col>
+        <ion-col> </ion-col>
+        <ion-col> </ion-col>
 
+        <ion-col>
+          <button class="largeFont" ion-button item-right color="danger" (click)="delete(item.time)">Delete</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
+
+  <ion-grid>
+    <ion-row> 
+      <ion-col> <button class="colHeight1" full ion-button (click)="goToSearch()">Return Home</button> </ion-col>
+    
+    <ion-col> </ion-col>
+    <ion-col> <button class="colHeight1" color="danger" full ion-button (click)="deleteAll()">Delete All</button> </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

@@ -71,12 +71,19 @@ export class AddEntryPage {
       alert.present();
     }
     else {
+      if (this.Comment == null)
+        this.Comment = "";
       this.data_object.data.push({
         "time": Date.now(), "task": this.Task,
         "person": this.Person, "comment": this.Comment
       });
       console.log(this.data_object);
       this.storage.set("tasks", this.data_object)
+      let alert = this.alertCtrl.create({
+        title: 'Task Saved',
+        buttons: ['Dismiss']
+      });
+      alert.present();
       this.navCtrl.pop();
     }
   }

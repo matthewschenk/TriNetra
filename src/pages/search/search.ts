@@ -31,7 +31,7 @@ export class SearchPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private storage: Storage, private alertCtrl: AlertController) {
     console.log("here");
-    storage.get("tasks").then((val) => {
+    this.storage.get("tasks").then((val) => {
       this.data_object = val;
 
       for (var i = 0; i < this.data_object.data.length; i++) {
@@ -55,22 +55,31 @@ export class SearchPage {
   }
 
   Search() {
-    // get data, check for null
+    //Get Data and Set Data on Every visit
+    this.storage.get("tasks").then((val) => {
+      this.data_object = val;
+    });
     this.results = [];
 
+    // Check for Null Dates
     if (this.StartDate == null)
     { this.StartDate = 0; }
     else
-    { this.StartDate = new Date(this.StartDate).getTime() / 1000 };
+    { this.StartDate = new Date(this.StartDate).getTime() };
+
     if (this.EndDate == null)
-    { this.EndDate = Date.now() }
+    { this.EndDate = Date.now(); }
+    else
+    { this.EndDate = new Date(this.EndDate).getTime() };
+
 
     for (var i = 0; i < this.data_object.data.length; i++) {
       var found = true;
 
+
       // Date Range Search
       if (this.data_object.data[i].time >= this.StartDate && this.data_object.data[i].time <= this.EndDate) {
-        
+
         // Task Search
         if (this.Task != null) {
           if (this.Task != this.data_object.data[i].task)
@@ -85,11 +94,12 @@ export class SearchPage {
               counter++;
             }
           }
-            if (counter == 0)
-              found = false;
+          if (counter == 0)
+            found = false;
         }
 
-        // Comment Search
+        // Comment Search 
+        // not working if comment is blank!!! must make if blank set to empty string!
         if (this.Comment != null) {
           if (!this.data_object.data[i].comment.includes(this.Comment))
             found = false;
@@ -101,14 +111,18 @@ export class SearchPage {
       if (found == true)
         this.results.push(this.data_object.data[i]);
     }
-    if (this.results.length > 0)
-    {
-    this.navCtrl.push(ViewPage,{param1: this.results});
-  }
-  else
-  {
-    //alert
-  }
+
+    // Error Checking If No Results Found
+    if (this.results.length > 0) {
+      this.navCtrl.push(ViewPage, { param1: this.results });
+    }
+    else {
+      let alert = this.alertCtrl.create({
+        title: 'No Results',
+        buttons: ['Dismiss']
+      });
+      alert.present();
+    }
   } // end Search()
 
 
