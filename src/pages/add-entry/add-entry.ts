@@ -57,18 +57,32 @@ export class AddEntryPage {
   }
 
   SaveEntry() {
+    // For bad people trying to break my code/logic
+    // Error -- Type New Person/No Task... Delete New Person/Task
+    if (this.NewPerson == ""){
+      this.NewPerson = null;
+    }
+
     // Adds One New Person to Person List
-    if (this.NewPerson != null) {
+    if (this.NewPerson != null && this.Person.length == 0) {
       this.Person.push(this.NewPerson);
     }
 
     // Error Checking and Save
-    if (!this.Person || !this.Task) {
+    if (this.Person.length == 0) {
       let alert = this.alertCtrl.create({
-        title: 'Empty Task or Person Fields',
+        title: 'Empty Person Field',
         buttons: ['Dismiss']
       });
       alert.present();
+    }
+    else if (!this.Task) {
+      let alert = this.alertCtrl.create({
+        title: 'Empty Task Field',
+        buttons: ['Dismiss']
+      });
+      alert.present();
+      this.Person = [];
     }
     else {
       if (this.Comment == null)
