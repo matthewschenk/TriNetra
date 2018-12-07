@@ -11,8 +11,11 @@ import { Storage } from '@ionic/storage';
 })
 export class HomePage {
 
+  // Variable Declarations
   data_object:any;
 
+  // Construct, always grabs the most recent data, if there is no data,
+  // then the data file is empty
   constructor(public navCtrl: NavController, private storage: Storage) {
     console.log("here");
     storage.get("tasks").then((val)=>{
@@ -34,6 +37,9 @@ export class HomePage {
       //this.data_object = JSON.parse(data);
     //});
   }
+
+  // goToAddEntry
+  // This function accepts no parameters, and navigates to the Add Entry Page
   goToAddEntry(){
     //this.data_object.data.push({"time": Date.now(),"task": "meeting", "person": "Ali", "comment": "test"});
     //this.storage.set("tasks", this.data_object)
@@ -41,6 +47,8 @@ export class HomePage {
     // make this object json, and save it to data in addentry page JSON.stringify storage set
   }
 
+  // goToSearch
+  // This function accepts no parameters, and navigates to the Search Page
   goToSearch(){
     //this.storage.get("tasks").then((Val)=>{
       //console.log(Val);

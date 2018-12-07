@@ -17,6 +17,7 @@ import { AlertController } from 'ionic-angular';
 })
 export class AddEntryPage {
 
+  // Declaration of Variables
   data_object: any;
   Person: any = [];
   Task: any;
@@ -26,7 +27,8 @@ export class AddEntryPage {
   TaskSet: any = new Set();
 
 
-  //write class, in new folder 'module' module.ts and import on to other pages instead of any
+  // Constructor
+  // Loads Data when pages is loaded
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private storage: Storage, private alertCtrl: AlertController) {
     console.log("addentry_page_here");
@@ -52,10 +54,16 @@ export class AddEntryPage {
     console.log('ionViewDidLoad AddEntryPage');
   }
 
+  // goToHome
+  // This function navigates to the Home Page
   goToHome() {
     this.navCtrl.pop();
   }
 
+  // SaveEntry
+  // This function accepts no parameters, it does look at the
+  // variables set from the HTML page. It has error checking,
+  // and then either saves the data or displays an error.
   SaveEntry() {
     // For bad people trying to break my code/logic
     // Error -- Type New Person/No Task... Delete New Person/Task
@@ -64,7 +72,7 @@ export class AddEntryPage {
     }
 
     // Adds One New Person to Person List
-    if (this.NewPerson != null && this.Person.length == 0) {
+    if (this.NewPerson != null) {
       this.Person.push(this.NewPerson);
     }
 
@@ -88,7 +96,8 @@ export class AddEntryPage {
       if (this.Comment == null)
         this.Comment = "";
       this.data_object.data.push({
-        "time": Date.now(), "task": this.Task,
+        // for some reason have to minus 6 hours, when put software on tablet
+        "time": Date.now() - 21600000, "task": this.Task,
         "person": this.Person, "comment": this.Comment
       });
       console.log(this.data_object);

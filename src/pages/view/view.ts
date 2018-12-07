@@ -17,9 +17,13 @@ import { AlertController } from 'ionic-angular';
 })
 export class ViewPage {
 
+  // Declaration of Variables
   results: any = [];
   data_object: any;
 
+// Constructor
+// This page accepts data from the Search Page, and loads the data when this
+// page is loaded.
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private storage: Storage, private alertCtrl: AlertController) {
     this.results = navParams.get('param1');
@@ -31,9 +35,13 @@ export class ViewPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewPage');
-    //console.log(this.results);
+    console.log(this.results);
   }
 
+  // timeConverter
+  // This function accepts an integer that represents the date in ms.
+  // It then converts that into a JavaScript date, and has variables
+  // gathered from the that date.
   timeConverter(UNIX_timestamp) {
     var a = new Date(UNIX_timestamp);
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -42,11 +50,21 @@ export class ViewPage {
     var date = a.getDate();
     var hour = a.getHours();
     var min = a.getMinutes();
+    if (min >= 10){
     var time = month + ' ' + date + ' ' + year + ' ' + hour + ':' + min;
+  }
+  else{
+    var time = month + ' ' + date + ' ' + year + ' ' + hour + ':' + '0' + min;
+  }
+    console.log(min);
     return time;
   }
 
-
+  // delete
+  // This function accepts an integer parameters, representing the date in ms.
+  // It is utilized to id the task the user wishes to delete, when matched with
+  // the corresponding id, both the results and data task are deleted.
+  // A confirmation message is displayed to confirm deletion.
   delete(id) {
     //console.log(id);
     let alert = this.alertCtrl.create({
@@ -87,10 +105,15 @@ export class ViewPage {
     alert.present();
   }
 
+  // goToSearch
+  // This function navigates to the root of the call stack, Home Page
   goToSearch() {
     this.navCtrl.popToRoot();
   }
 
+  // deleteAll
+  // this function has each entry in result deleted from result
+  // and the data. A confirmation is displayed to confirm deletion.
   deleteAll() {
     console.log('results:');
     console.log(this.results);

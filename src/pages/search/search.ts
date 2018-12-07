@@ -18,6 +18,7 @@ import { ViewPage } from '../view/view';
 })
 export class SearchPage {
 
+  // Declartion of Variables
   data_object: any;
   results: any = [];
   Person: any = [];
@@ -28,6 +29,8 @@ export class SearchPage {
   PersonSet: any = new Set();
   TaskSet: any = new Set();
 
+  // Constructor
+  // Data is loaded everytime this page is loaded
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private storage: Storage, private alertCtrl: AlertController) {
     console.log("here");
@@ -48,12 +51,21 @@ export class SearchPage {
     console.log('ionViewDidLoad SearchPage');
   }
 
+  // goToHome
+  // This function navigates to Home Page
   goToHome() {
     this.navCtrl.pop();
     //console.log(this.StartDate);
     //console.log(new Date(this.StartDate).getTime() / 1000);
   }
 
+  // Search
+  // This function accepts no parameters, however it
+  // uses the variables set from the HTML page. It loads
+  // the current data and has error checking. Then filters
+  // the search results based on the variables. It will either
+  // navigate and pass to the results to the View page, or
+  // display a message.
   Search() {
     //Get Data and Set Data on Every visit
     this.storage.get("tasks").then((val) => {
@@ -64,13 +76,17 @@ export class SearchPage {
     // Check for Null Dates
     if (this.StartDate == null)
     { this.StartDate = 0; }
-    else
-    { this.StartDate = new Date(this.StartDate).getTime() };
+    else {
+      // Must add 6 hours for correct time conversion
+      this.StartDate = new Date(this.StartDate).getTime() + 21600000;
+    };
 
     if (this.EndDate == null)
     { this.EndDate = Date.now(); }
-    else
-    { this.EndDate = new Date(this.EndDate).getTime() };
+    else {
+      // Must add 6 hours for correct time conversion
+      this.EndDate = new Date(this.EndDate).getTime() + 21600000;
+    };
 
 
     for (var i = 0; i < this.data_object.data.length; i++) {
